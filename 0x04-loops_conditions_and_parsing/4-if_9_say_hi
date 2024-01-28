@@ -10,4 +10,3 @@ do
 	fi
 	num=$((num + 1 ))
 done
-echo "Best School"
