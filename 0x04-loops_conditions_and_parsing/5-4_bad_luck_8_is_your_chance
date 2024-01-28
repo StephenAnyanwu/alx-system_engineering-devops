@@ -1,2 +1,15 @@
 #!/usr/bin/env bash
-
+num=1
+while [ $num -le 10 ]
+do
+	if [ $num -eq 4 ]
+	then
+		echo "bad luck"
+	elif [ $num -eq 8 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	num=$(( num + 1 ))
+done
