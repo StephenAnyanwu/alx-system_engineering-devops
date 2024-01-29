@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# A sript that displays numbers from 1 to 100.
+# Displays FizzBuzz when the number is a multiple of 3 and 5.
+# Displays Fizz when the number is multiple of 3.
+# Displays Buzz when the number is a multiple of 5.
+# Otherwise, displays the number.
+num=1
+while [ $num -le 100 ]
+do
+	mult3=$(( num % 3 ))
+	mult5=$(( num % 5 ))
+	if [[ $mult3 -eq 0 && $mult5 -eq 0 ]]
+	then
+		echo "FizzBuzz"
+	elif [ $mult3 -eq 0 ]
+	then
+		echo "Fizz"
+	elif [ $mult5 -eq 0 ]
+	then
+		echo "Buzz"
+	else
+		echo "$num"
+	fi
+	num=$((num + 1 ))
+done
