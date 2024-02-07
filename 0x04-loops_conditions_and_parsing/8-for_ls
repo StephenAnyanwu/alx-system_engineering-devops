@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Display the contents of a current directory in a list format
+#+ where only the part of the name after the first dash is displayed.
+# Description: no hidden file is diplayed.
+
+list=$(ls)
+for i in $list
+do
+	echo "$i" | cut -d '-' -f2
+done
+
