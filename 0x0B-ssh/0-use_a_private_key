@@ -2,4 +2,4 @@
 # A script that uses ssh located in ~/.ssh/school to connect to
 # connect to a server with username ubuntu.
 
-ssh unbuntu -f ~/.ssh/school
+ssh unbuntu -i ~/.ssh/school
