@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# A script  that transfers a file from our client to a server
+# Requirements: 4 parameters
+# >> The path to the file to be transferred
+# >> The IP of the server we want to transfer the file to
+# >> The username scp connects with
+# >> The path to the SSH private key that scp uses
+
+# check for number of command line arguments (parameters)
+if [ $# -lt 4 ]
+then
+	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+	exit 1
+fi
+
+# assign paramters to variables
+PATH_TO_FILE=$1
+IP=$2
+USERNAME=$3
+PATH_TO_SSH_KEY=$4
+
+# Tranfer file to home directory ~/ using scp
+# strict host key checking is disabled
+scp -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNMAE@$IP:~/"
+
+# check if file transfer was successful
+if [ $? -eq 0 ]
+then
+	echo "File Transfer Successful"
+else
+	echo "File Transfer Failed"
+fi
