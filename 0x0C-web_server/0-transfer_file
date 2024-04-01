@@ -21,7 +21,7 @@ PATH_TO_SSH_KEY=$4
 
 # Tranfer file to home directory ~/ using scp
 # strict host key checking is disabled
-scp -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNMAE@$IP:~/"
+scp -o "StrictHostKeyChecking no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
 
 # check if file transfer was successful
 if [ $? -eq 0 ]
