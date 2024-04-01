@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# A Bash script that install nginx on unbuntu web server
+# A Bash script that install nginx on unbuntu web01 server
 
 # Update the packages manager
 sudo apt-get update
 
 # Install nginx
-sudo apt-get install -y nginx
+sudo apt-get -y install nginx
 
 # Use ufw firewall to allow access to port 80 (http)
 sudo ufw allow 'Nginx HTTP'
@@ -16,5 +16,5 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 # Test nginx configuration file
 sudo nginx -t
 
-# Reload nginx server
-sudo service nginx reload
+# Start nginx server
+sudo service nginx start
