@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# A script that Nginx server so that /redirect_me is redirecting to
+# another page that is https://github.com/StephenAnyanwu.
+# The redirection is “301 Moved Permanently”
+
+# Update the package manager and install Nginx
+sudo apt-get update
+sudo apt-get install nginx
+
+# Create a file and display its content (Hello World!) on the terminal
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Store the redirection command in a variable
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/StephenAnyanwu permanent;"
+
+# Use sed to input the command in a file
+sudo sed "/server_name _/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+# Restart Nginx server
+sudo service nginx restart
