@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
 # A script that configures Nginx server so that /redirect_me is redirecting to
-# another page that is https://github.com/StephenAnyanwu.
+# another page (that is https://github.com/StephenAnyanwu).
 # The redirection is “301 Moved Permanently”
-# It also configures Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page.
 
 # Update the package manager and install Nginx
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y nginx
+
+# Reconfigure firewall to allow traffic on port 80.
+sudo ufw allow 'Nginx HTTP'
 
 # Create a file and display its content (Hello World!) on the terminal
 echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Create the page/file (that is /redirect_me) in /var/www/html/ with the redirecting
+# url (that is https://github.com/StephenAnyanwu) written in it.""
+echo "https://github.com/StephenAnyanwu" | sudo tee /var/www/html/redirect_me
 
 # Store the redirection command in a variable
 string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/StephenAnyanwu permanent;"
 
 # Use sed to input the command in a file
-sudo sed "/server_name _/$string_for_replacement/" /etc/nginx/sites-enabled/default
+sudo sed -i "s/server_name _/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# Create a 404 page (a file)
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-
-string_for_replacement2="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html [\n\troot \/var/www/html;\n\tinternal;\n\t]"
-
-sudo sed -i "s/listen 80 default_server;/$string_for_replacement2" /etc/nginx/sites-enabled/default
+# Testing configurations for syntax errors
+sudo nginx -t
 
 # Restart Nginx server
 sudo service nginx restart
