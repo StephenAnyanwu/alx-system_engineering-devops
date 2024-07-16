@@ -4,21 +4,24 @@
 # The redirection is “301 Moved Permanently”
 
 # Update the package manager and install Nginx
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y nginx
+
+# Reconfigure firewall to allow traffic on port 80.
+sudo ufw allow 'Nginx HTTP'
 
 # Create a file and display its content (Hello World!) on the terminal
 echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Create the page/file (that is /redirect_me) in /var/www/html/ with the redirecting
+# url (that is https://github.com/StephenAnyanwu) written in it.""
+echo "https://github.com/StephenAnyanwu" | sudo tee /var/www/html/redirect_me
 
 # Store the redirection command in a variable
 string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/StephenAnyanwu permanent;"
 
 # Use sed to input the command in a file
 sudo sed -i "s/server_name _/$string_for_replacement/" /etc/nginx/sites-enabled/default
-
-# Create the page/file (that is /redirect_me) in /var/www/html/ with the redirecting
-# url (that is https://github.com/StephenAnyanwu) written in it.""
-echo "https://github.com/StephenAnyanwu" | sudo tee /var/www/html/redirect_me
 
 # Testing configurations for syntax errors
 sudo nginx -t
