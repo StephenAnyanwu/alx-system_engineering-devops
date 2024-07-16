@@ -8,10 +8,10 @@ sudo apt-get install -y nginx
 # Reconfigure firewall to allow traffic on port 80.
 sudo ufw allow 'Nginx HTTP'
 
-# Create a file and write in it
-sh -c 'echo Hello World! > sudo tee /var/www/html/index.html'
+# Create a file (home page) and write in it
+sh -c 'echo Hello World! > /var/www/html/index.html'
 
-# Create a file and write in it
+# Create a file and write the error message in it
 sudo touch /var/www/html/404.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
