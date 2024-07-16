@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # A script that configures Nginx server so that /redirect_me is redirecting to
-# another page that is https://github.com/StephenAnyanwu.
+# another page (that is https://github.com/StephenAnyanwu).
 # The redirection is “301 Moved Permanently”
 
 # Update the package manager and install Nginx
@@ -17,7 +17,8 @@ string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/githu
 sudo sed -i "s/server_name _/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
 # Create the page/file (that is /redirect_me) in /var/www/html/ with the redirecting
-# url (that is https://github.com/StephenAnyanwu) written in it.
+# url (that is https://github.com/StephenAnyanwu) written in it.""
+echo "https://github.com/StephenAnyanwu" | sudo tee /var/www/html/redirect_me
 
 # Testing configurations for syntax errors
 sudo nginx -t

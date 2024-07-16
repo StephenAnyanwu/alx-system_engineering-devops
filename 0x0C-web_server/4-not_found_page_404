@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # A script that configures Nginx server so that /redirect_me is redirecting to
 # another page that is https://github.com/StephenAnyanwu.
 # The redirection is “301 Moved Permanently”
