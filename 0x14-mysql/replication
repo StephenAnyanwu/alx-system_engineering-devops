@@ -4,7 +4,7 @@ web01 - FLUSH PRIVILEGES;
 web01 - SHOW MASTER STATUS;
 
 # Log into replica/slave database on web-02
-web02 - CHANGE MASTER TO MASTER_HOST='10.0.0.156', MASTER_USER='repl', MASTER_PASSWORD='slave_password', MASTER_LOG_FILE='recorded_log_file_name', MASTER_LOG_POS=log_position;
+web02 - CHANGE MASTER TO MASTER_HOST='master_ip', MASTER_USER='replica_user', MASTER_PASSWORD='master_password', MASTER_LOG_FILE='recorded_log_file_name', MASTER_LOG_POS=log_position;
 web02 - START SLAVE;
 
 sudo service mysql restart
