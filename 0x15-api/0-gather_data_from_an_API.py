@@ -8,6 +8,7 @@ import re
 import requests
 import sys
 
+
 # Note: 'requests' is a third-party library hence its installed
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com"
