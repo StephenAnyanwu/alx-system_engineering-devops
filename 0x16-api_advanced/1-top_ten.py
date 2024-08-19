@@ -15,7 +15,7 @@ def top_ten(subreddit):
     url = f'https://www.reddit.com/r/{subreddit}/hot/.json?limit=10'
     response = requests.get(url, headers=user, allow_redirects=False)
     try:
-        for post in response.get('data').get('children'):
+        for post in response.json().get('data').get('children'):
             print(post.get('data').get('title'))
     except Exception:
         print(None)
